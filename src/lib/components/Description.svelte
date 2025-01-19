@@ -6,8 +6,8 @@
 	</p>
 	<p>
 		The tool uses a
-		<a href="https://github.com/ffmpegwasm/ffmpeg.wasm">WebAssembly port of FFmpeg</a>
+		<a href="https://github.com/ffmpegwasm/ffmpeg.wasm" target="_blank">WebAssembly port of FFmpeg</a>
 		for all client-side conversions. The site itself is built with SvelteKit and styled using TailwindCSS.
 	</p>
-	<a href="https://github.com/Plague-Doc/file-converter">Check out the source code!</a>
+	<a href="https://github.com/Plague-Doc/file-converter" target="_blank">Check out the source code!</a>
 </div>
