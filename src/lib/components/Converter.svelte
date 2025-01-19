@@ -60,9 +60,15 @@
 
 	<Separator orientation="vertical" class="mx-4" />
 
-	<Button disabled={selection === '' || !converter.loaded || inProgress} onclick={convert}>
-		<ArrowRightLeft /> Convert
-	</Button>
+	{#if !converter.loaded}
+		<Button disabled>
+			<LoaderCircle class="animate-spin" /> Convert
+		</Button>
+	{:else}
+		<Button disabled={selection === '' || inProgress} onclick={convert}>
+			<ArrowRightLeft /> Convert
+		</Button>
+	{/if}
 
 	<Separator orientation="vertical" class="mx-4" />
 

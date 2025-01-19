@@ -1,5 +1,4 @@
 import { type ClassValue, clsx } from 'clsx';
-import type { Tween } from 'svelte/motion';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
