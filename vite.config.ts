@@ -5,6 +5,8 @@ const viteServerConfig = {
 	name: 'viteServerConfig',
 	configureServer(server: any) {
 		server.middlewares.use((_req: any, res: any, next: any) => {
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'GET');
 			res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
 			res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
 			next();
