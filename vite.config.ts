@@ -8,7 +8,7 @@ const viteServerConfig = {
 			res.setHeader('Access-Control-Allow-Origin', '*');
 			res.setHeader('Access-Control-Allow-Methods', 'GET');
 			res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-			res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+			res.setHeader('Cross-Origin-Embedder-Policy', 'credentialless');
 			next();
 		});
 	}
@@ -22,7 +22,7 @@ export default defineConfig({
 	server: {
 		headers: {
 			'Cross-Origin-Opener-Policy': 'same-origin',
-			'Cross-Origin-Embedder-Policy': 'require-corp'
+			'Cross-Origin-Embedder-Policy': 'credentialless'
 		}
 	}
 });
