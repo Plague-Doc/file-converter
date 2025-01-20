@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 	import { Button } from '$lib/components/ui/button';
 	import { toggleMode } from 'mode-watcher';
 	import Sun from 'lucide-svelte/icons/sun';
@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="flex gap-4">
-		<div in:fly={{ y: 100, duration: 300, delay: 100 }}>
+		<div in:fade={{ duration: 350, delay: 200 }}>
 			<Button variant="outline" onclick={toggleMode}>
 				<Moon class="hidden dark:block" />
 				<span class="hidden dark:block">Dark theme</span>
@@ -33,13 +33,13 @@
 			</Button>
 		</div>
 
-		<div in:fly={{ y: 100, duration: 300, delay: 200 }}>
+		<div in:fade={{ duration: 350, delay: 300 }}>
 			<Button variant="outline" href="https://github.com/Plague-Doc/file-converter" class="w-fit" target="_blank">
 				<CodeXml /> Source code
 			</Button>
 		</div>
 
-		<div in:fly={{ y: 100, duration: 300, delay: 300 }}>
+		<div in:fade={{ duration: 350, delay: 400 }}>
 			<Button disabled variant="outline" class="w-fit">
 				<SquareArrowOutUpRight /> Other projects
 			</Button>
