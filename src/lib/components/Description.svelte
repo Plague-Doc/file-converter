@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
 	import { Button } from '$lib/components/ui/button';
 	import { toggleMode } from 'mode-watcher';
 	import Sun from 'lucide-svelte/icons/sun';
@@ -16,26 +17,32 @@
 			since conversions happen entirely client-side, with <strong>no usage limits!</strong>
 		</p>
 		<p>
-			The tool uses a
+			This tool uses a
 			<a href="https://github.com/ffmpegwasm/ffmpeg.wasm" target="_blank">WebAssembly port of FFmpeg</a>
 			for all client-side conversions. The site itself is built with SvelteKit and styled using TailwindCSS.
 		</p>
 	</div>
 
 	<div class="flex gap-4">
-		<Button variant="outline" onclick={toggleMode}>
-			<Moon class="hidden dark:block" />
-			<span class="hidden dark:block">Dark theme</span>
-			<Sun class="block dark:hidden" />
-			<span class="block dark:hidden">Light theme</span>
-		</Button>
+		<div in:fly={{ y: 100, duration: 300, delay: 100 }}>
+			<Button variant="outline" onclick={toggleMode}>
+				<Moon class="hidden dark:block" />
+				<span class="hidden dark:block">Dark theme</span>
+				<Sun class="block dark:hidden" />
+				<span class="block dark:hidden">Light theme</span>
+			</Button>
+		</div>
 
-		<Button variant="outline" href="https://github.com/Plague-Doc/file-converter" class="w-fit" target="_blank">
-			<CodeXml /> Source code
-		</Button>
+		<div in:fly={{ y: 100, duration: 300, delay: 200 }}>
+			<Button variant="outline" href="https://github.com/Plague-Doc/file-converter" class="w-fit" target="_blank">
+				<CodeXml /> Source code
+			</Button>
+		</div>
 
-		<Button disabled variant="outline" class="w-fit">
-			<SquareArrowOutUpRight /> Other projects
-		</Button>
+		<div in:fly={{ y: 100, duration: 300, delay: 300 }}>
+			<Button disabled variant="outline" class="w-fit">
+				<SquareArrowOutUpRight /> Other projects
+			</Button>
+		</div>
 	</div>
 </div>
