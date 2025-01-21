@@ -9,6 +9,7 @@
 	import { converter } from '$lib/store.svelte';
 	import { videoCodecs, imageCodecs, audioCodecs } from '$lib/utils';
 	import Progress from './ui/progress/progress.svelte';
+	import { fly } from 'svelte/transition';
 
 	let selection = $state('');
 	let inProgress = $state(false);
@@ -80,8 +81,8 @@
 <hr class="mx-auto mt-8 max-w-screen-lg" />
 
 <div class="mx-auto max-w-screen-lg">
-	{#each converter.userFiles as userFile}
-		<div class="my-4 flex h-10 items-center">
+	{#each converter.userFiles as userFile, index}
+		<div in:fly|global={{ y: 100, duration: 350, delay: 50 + index * 50 }} class="my-4 flex h-10 items-center">
 			<div class="flex-1 truncate">
 				{userFile.file.name}
 			</div>
