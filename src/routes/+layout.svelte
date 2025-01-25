@@ -14,6 +14,6 @@
 </script>
 
 <ModeWatcher />
-<main class="container mx-auto px-2 pb-8 pt-16">
+<main class="container mx-auto px-4 pb-8 pt-8 sm:pt-16">
 	{@render children()}
 </main>

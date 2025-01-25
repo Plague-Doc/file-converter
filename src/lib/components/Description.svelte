@@ -9,8 +9,8 @@
 </script>
 
 <div class="flex flex-col">
-	<div class="prose mb-6 dark:prose-invert prose-p:text-justify">
-		<h1 class="text-center">Online file format converter</h1>
+	<div class="prose-sm mb-6 dark:prose-invert sm:prose prose-p:text-justify">
+		<h1 class="text-center font-semibold sm:font-bold">Online file format converter</h1>
 		<p>
 			Easily convert between popular video, image, and audio file formats — all directly in your browser. For
 			example, quickly turn a large MKV video into a compact MP4, or a PNG into a JPEG. Your files stay secure
@@ -23,12 +23,12 @@
 		</p>
 	</div>
 
-	<div class="flex gap-4">
+	<div class="flex flex-wrap items-center justify-center gap-4">
 		<div in:fade={{ duration: 350, delay: 200 }}>
 			<Button variant="outline" onclick={toggleMode}>
 				<Moon class="hidden dark:block" />
-				<span class="hidden dark:block">Dark theme</span>
 				<Sun class="block dark:hidden" />
+				<span class="hidden dark:block">Dark theme</span>
 				<span class="block dark:hidden">Light theme</span>
 			</Button>
 		</div>

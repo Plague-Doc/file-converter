@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { Separator } from '$lib/components/ui/separator';
 	import * as Select from '$lib/components/ui/select';
 	import ArrowRightLeft from 'lucide-svelte/icons/arrow-right-left';
 	import X from 'lucide-svelte/icons/x';
@@ -45,37 +44,36 @@
 	}
 </script>
 
-<div class="flex justify-center">
-	<span class="me-2 flex items-center">Convert into</span>
+<div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+	<div class="flex gap-2">
+		<span class="flex items-center font-medium">Convert into</span>
+		<Select.Root type="single" bind:value={selection} disabled={inProgress}>
+			<Select.Trigger class="w-40 min-w-fit">
+				{selection === '' ? 'Select format' : selection}
+			</Select.Trigger>
+			<Select.Content>
+				{#each codecs! as codec}
+					<Select.Item value={codec[0]}>{codec[0]}</Select.Item>
+				{/each}
+			</Select.Content>
+		</Select.Root>
+	</div>
 
-	<Select.Root type="single" bind:value={selection} disabled={inProgress}>
-		<Select.Trigger class="w-40 min-w-fit">
-			{selection === '' ? 'Select format' : selection}
-		</Select.Trigger>
-		<Select.Content>
-			{#each codecs! as codec}
-				<Select.Item value={codec[0]}>{codec[0]}</Select.Item>
-			{/each}
-		</Select.Content>
-	</Select.Root>
+	<div class="flex gap-4">
+		{#if !converter.loaded}
+			<Button class="w-fit" disabled>
+				<LoaderCircle class="animate-spin" /> Convert
+			</Button>
+		{:else}
+			<Button class="w-fit" disabled={selection === '' || inProgress} onclick={convert}>
+				<ArrowRightLeft /> Convert
+			</Button>
+		{/if}
 
-	<Separator orientation="vertical" class="mx-4" />
-
-	{#if !converter.loaded}
-		<Button disabled>
-			<LoaderCircle class="animate-spin" /> Convert
+		<Button class="w-fit" variant="destructive" onclick={() => converter.reset()}>
+			<X /> Cancel
 		</Button>
-	{:else}
-		<Button disabled={selection === '' || inProgress} onclick={convert}>
-			<ArrowRightLeft /> Convert
-		</Button>
-	{/if}
-
-	<Separator orientation="vertical" class="mx-4" />
-
-	<Button variant="destructive" onclick={() => converter.reset()}>
-		<X /> Cancel
-	</Button>
+	</div>
 </div>
 
 <hr class="mx-auto mt-8 max-w-screen-lg" />
@@ -87,11 +85,13 @@
 				{userFile.file.name}
 			</div>
 
-			{#if userFile.status === 'converting'}
-				<Progress value={Math.floor(userFile.progress)} max={100} class="mx-8 max-w-96" />
-			{:else if userFile.status === 'done'}
-				<Progress value={100} max={100} class="mx-8 max-w-96" />
-			{/if}
+			<div class="hidden flex-1 sm:flex">
+				{#if userFile.status === 'converting'}
+					<Progress value={Math.floor(userFile.progress)} max={100} class="mx-4 max-w-96 md:mx-8" />
+				{:else if userFile.status === 'done'}
+					<Progress value={100} max={100} class="mx-4 max-w-96 md:mx-8" />
+				{/if}
+			</div>
 
 			{#if userFile.status === 'converting'}
 				<Button class="w-32" variant="outline" disabled>

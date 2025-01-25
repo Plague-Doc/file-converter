@@ -27,17 +27,17 @@ export async function readFile(data: Uint8Array | string, fileName: string, mime
 
 export const videoCodecs = new Map<string, { mimeType: string; options: string[] }>([
 	['MP4', { mimeType: 'video/mp4', options: ['-c:v', 'libx264', '-crf', '18', '-c:a', 'aac'] }],
-	['MOV', { mimeType: 'video/quicktime', options: ['-c:v', 'libx264', '-crf', '18', '-c:a', 'aac'] }],
-	['WMV', { mimeType: 'video/x-ms-wmv', options: ['-c:v', 'mpeg4', '-q:v', '2', '-c:a', 'aac'] }],
+	['MKV', { mimeType: 'video/x-matroska', options: ['-c:v', 'libx264', '-crf', '18', '-c:a', 'aac'] }],
 	['AVI', { mimeType: 'video/avi', options: ['-c:v', 'mpeg4', '-q:v', '2', '-c:a', 'aac'] }],
-	['MKV', { mimeType: 'video/x-matroska', options: ['-c:v', 'libx264', '-crf', '18', '-c:a', 'aac'] }]
+	['MOV', { mimeType: 'video/quicktime', options: ['-c:v', 'libx264', '-crf', '18', '-c:a', 'aac'] }],
+	['WMV', { mimeType: 'video/x-ms-wmv', options: ['-c:v', 'mpeg4', '-q:v', '2', '-c:a', 'aac'] }]
 ]);
 
 export const imageCodecs = new Map<string, { mimeType: string; options: string[] }>([
 	['PNG', { mimeType: 'image/png', options: [] }],
 	['JPEG', { mimeType: 'image/jpeg', options: ['-q:v', '2'] }],
-	['WEBP', { mimeType: 'image/webp', options: ['-c:v', 'libwebp', '-lossless', '1'] }],
 	['GIF', { mimeType: 'image/gif', options: [] }],
+	['WEBP', { mimeType: 'image/webp', options: ['-c:v', 'libwebp', '-lossless', '1'] }],
 	['BMP', { mimeType: 'image/bmp', options: [] }],
 	['TIFF', { mimeType: 'image/tiff', options: [] }]
 ]);
@@ -45,6 +45,6 @@ export const imageCodecs = new Map<string, { mimeType: string; options: string[]
 export const audioCodecs = new Map<string, { mimeType: string; options: string[] }>([
 	['MP3', { mimeType: 'audio/mpeg', options: ['-c:a', 'libmp3lame', '-q:a', '2'] }],
 	['WAV', { mimeType: 'audio/wav', options: [] }],
-	['FLAC', { mimeType: 'audio/x-flac', options: [] }],
-	['OGG', { mimeType: 'audio/ogg', options: ['-c:a', 'libvorbis', '-q:a', '2'] }]
+	['OGG', { mimeType: 'audio/ogg', options: ['-c:a', 'libvorbis', '-q:a', '2'] }],
+	['FLAC', { mimeType: 'audio/x-flac', options: [] }]
 ]);

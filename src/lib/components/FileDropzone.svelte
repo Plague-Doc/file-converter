@@ -54,16 +54,16 @@
 	ondragleave={() => (isDragged = false)}
 	for="file-upload"
 	class={[
-		'flex h-64 w-full max-w-2xl cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed duration-200 hover:border-muted-foreground hover:duration-100',
+		'flex h-52 w-full max-w-2xl cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed duration-200 hover:border-muted-foreground hover:duration-100 sm:h-64',
 		isDragged && 'border-muted-foreground'
 	]}>
-	<div class="flex flex-col items-center justify-center pb-6 pt-5">
-		<CloudUpload class="mb-4 size-12" />
-		<p class="mb-2">
+	<div class="flex flex-col items-center justify-center p-4 text-center">
+		<CloudUpload class="mb-4 size-10 sm:size-12" />
+		<p class="mb-2 text-sm sm:text-base">
 			<span class="font-semibold">Click to upload</span>
 			or drag and drop
 		</p>
-		<p class="mb-4 text-sm text-muted-foreground">Supports most popular video, image, and audio file types</p>
+		<p class="mb-4 text-xs text-muted-foreground sm:text-sm">Supports most popular file types</p>
 		<p class="underline decoration-destructive decoration-2 underline-offset-4">
 			{errorMessage}
 		</p>

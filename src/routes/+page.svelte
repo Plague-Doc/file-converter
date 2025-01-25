@@ -15,7 +15,7 @@
 		<FileDropzone />
 	</div>
 
-	<hr in:fly={{ y: 100, duration: 350, delay: 100 }} class="mx-auto mb-12 mt-16 max-w-3xl" />
+	<hr in:fly={{ y: 100, duration: 350, delay: 100 }} class="mx-auto mb-6 mt-8 max-w-3xl sm:mb-12 sm:mt-16" />
 
 	<div in:fly={{ y: 100, duration: 350, delay: 100 }} class="flex justify-center">
 		<Description />
