@@ -96,7 +96,9 @@
 			{#if userFile.status === 'converting'}
 				<Button class="w-32" variant="outline" disabled>
 					<LoaderCircle class="animate-spin" />
-					{Math.floor(userFile.progress)}%
+					{#if Math.floor(userFile.progress)}
+						{Math.floor(userFile.progress)}%
+					{/if}
 				</Button>
 			{:else if userFile.status === 'error'}
 				<span class="underline decoration-destructive decoration-2 underline-offset-4">Conversion error!</span>
