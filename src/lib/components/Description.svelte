@@ -23,7 +23,7 @@
 		</p>
 	</div>
 
-	<div class="flex flex-wrap items-center justify-center gap-4">
+	<div class="flex flex-wrap items-center justify-center gap-4 sm:mt-2">
 		<div in:fade={{ duration: 350, delay: 200 }}>
 			<Button variant="outline" onclick={toggleMode}>
 				<Moon class="hidden dark:block" />
