@@ -8,7 +8,7 @@
 	import { converter } from '$lib/store.svelte';
 	import { videoCodecs, imageCodecs, audioCodecs } from '$lib/utils';
 	import Progress from './ui/progress/progress.svelte';
-	import { fly } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 
 	let selection = $state('');
 	let inProgress = $state(false);
@@ -106,6 +106,12 @@
 				<Button class="w-32" variant="outline" onclick={() => download(userFile.file)}>
 					<Download /> Download
 				</Button>
+			{:else}
+				<p
+					in:fade|global={{ duration: 350, delay: 150 + index * 150 }}
+					class=" text-sm italic text-muted-foreground">
+					Uploaded sucessfully!
+				</p>
 			{/if}
 		</div>
 	{/each}
