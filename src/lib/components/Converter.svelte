@@ -110,7 +110,7 @@
 				<p
 					in:fade|global={{ duration: 350, delay: 150 + index * 150 }}
 					class=" text-sm italic text-muted-foreground">
-					Uploaded sucessfully!
+					Uploaded successfully!
 				</p>
 			{/if}
 		</div>
