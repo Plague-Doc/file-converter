@@ -5,26 +5,6 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
-export async function readFileData(file: File): Promise<Uint8Array> {
-	return new Promise((resolve) => {
-		const fileReader = new FileReader();
-		fileReader.onload = () => {
-			const { result } = fileReader;
-			if (result instanceof ArrayBuffer) {
-				resolve(new Uint8Array(result));
-			} else {
-				resolve(new Uint8Array());
-			}
-		};
-		fileReader.readAsArrayBuffer(file);
-	});
-}
-
-export async function readFile(data: Uint8Array | string, fileName: string, mimeType: string): Promise<File> {
-	const blob = new Blob([data], { type: mimeType });
-	return new File([blob], fileName, { type: mimeType });
-}
-
 export const videoCodecs = new Map<string, { mimeType: string; options: string[] }>([
 	['MP4', { mimeType: 'video/mp4', options: ['-c:v', 'libx264', '-crf', '18', '-c:a', 'aac'] }],
 	['MKV', { mimeType: 'video/x-matroska', options: ['-c:v', 'libx264', '-crf', '18', '-c:a', 'aac'] }],
