@@ -1,36 +1,23 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
 	import { Button } from '$lib/components/ui/button';
 	import * as Select from '$lib/components/ui/select';
+	import { Progress } from '$lib/components/ui/progress';
 	import ArrowRightLeft from 'lucide-svelte/icons/arrow-right-left';
 	import X from 'lucide-svelte/icons/x';
 	import Download from 'lucide-svelte/icons/download';
 	import LoaderCircle from 'lucide-svelte/icons/loader-circle';
 	import { converter } from '$lib/store.svelte';
-	import { videoCodecs, imageCodecs, audioCodecs } from '$lib/utils';
-	import Progress from './ui/progress/progress.svelte';
-	import { fade, fly } from 'svelte/transition';
+	import { getFormats } from '$lib/utils';
 
 	let selection = $state('');
 	let inProgress = $state(false);
-
-	let codecs: typeof videoCodecs | undefined = $state();
-	switch (converter.userFiles[0].file.type.split('/')[0]) {
-		case 'video':
-			codecs = videoCodecs;
-			break;
-		case 'image':
-			codecs = imageCodecs;
-			break;
-		case 'audio':
-			codecs = audioCodecs;
-			break;
-	}
+	let formats = getFormats();
 
 	async function convert() {
 		inProgress = true;
-		const codec = codecs?.get(selection);
-		if (!codec) return;
-		await converter.transcode(selection.toLowerCase(), codec.mimeType, codec.options);
+		const format = formats!.get(selection);
+		await converter.transcode(selection.toLowerCase(), format!.mimeType, format!.options);
 		inProgress = false;
 	}
 
@@ -52,8 +39,8 @@
 				{selection === '' ? 'Select format' : selection}
 			</Select.Trigger>
 			<Select.Content>
-				{#each codecs! as codec}
-					<Select.Item value={codec[0]}>{codec[0]}</Select.Item>
+				{#each formats! as format}
+					<Select.Item value={format[0]}>{format[0]}</Select.Item>
 				{/each}
 			</Select.Content>
 		</Select.Root>
@@ -107,11 +94,7 @@
 					<Download /> Download
 				</Button>
 			{:else}
-				<p
-					in:fade|global={{ duration: 350, delay: 150 + index * 150 }}
-					class=" text-sm italic text-muted-foreground">
-					Uploaded successfully!
-				</p>
+				<p class=" text-sm italic text-muted-foreground">Uploaded successfully!</p>
 			{/if}
 		</div>
 	{/each}
